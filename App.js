@@ -11,7 +11,7 @@ const navigator = createStackNavigator(
   {
     initialRouteName: "Home",
     defaultNavigationOptions: {
-      title: "Cúc cù cu cu"
+      title: "Components"
     }
   }
 );

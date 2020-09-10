@@ -2,22 +2,23 @@ import React from "react";
 import { Text, StyleSheet, View } from "react-native";
 
 const HomeScreen = () => {
-  const greeting = "hello mai fen";
+  const name = "Lân Hoàng";
   return (
     <View>
-      <Text style={styles.text}>Home Screen </Text>
-      <Text style={styles.text1}>{greeting}</Text>
+      <Text style={styles.text}>Getting started with react native! </Text>
+      {/* {greeting} */}
+  <Text style={styles.text1}>My name is : {name}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 30,
+    fontSize: 45,
   },
   text1: {
     fontSize: 20,
-    color:'blue'
+    color: "blue",
   },
 });
 
