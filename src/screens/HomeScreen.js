@@ -5,7 +5,7 @@ const HomeScreen = ({navigation}) => {
  
   return (
     <View>
-      <Text style={styles.text}>Getting started with react native! </Text>
+      <Text style={styles.text}>I love react-native! </Text>
       {/* Go to Components */}
       <Button 
       onPress={() => navigation.navigate('Components')}
@@ -23,6 +23,12 @@ const HomeScreen = ({navigation}) => {
       <Button
         title="Go to Image"
         onPress={() => navigation.navigate('Image')}
+        style={styles.Button}
+      />
+      {/* Go to CounterScreen */}
+      <Button
+        title="Go to CounterScreen"
+        onPress={() => navigation.navigate('Counter')}
         style={styles.Button}
       />
     </View>
