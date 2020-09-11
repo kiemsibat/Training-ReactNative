@@ -42,6 +42,12 @@ const HomeScreen = ({ navigation }) => {
         onPress={() => navigation.navigate("Square")}
         style={styles.Button}
       />
+      {/* Go to TextInput */}
+      <Button
+        title="Go to TextInput"
+        onPress={() => navigation.navigate("TextInput")}
+        style={styles.Button}
+      />
     </View>
   );
 };
