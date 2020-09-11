@@ -1,40 +1,45 @@
 import React from "react";
-import { Text, StyleSheet, View, Button,TouchableOpacity } from "react-native";
+import { Text, StyleSheet, View, Button, TouchableOpacity } from "react-native";
 
-const HomeScreen = ({navigation}) => {
- 
+const HomeScreen = ({ navigation }) => {
   return (
     <View>
       <Text style={styles.text}>I love react-native! </Text>
       {/* Go to Components */}
-      <Button 
-      onPress={() => navigation.navigate('Components')}
-      title="Go to components Demo"
-      style={styles.Button}
+      <Button
+        onPress={() => navigation.navigate("Components")}
+        title="Go to components Demo"
+        style={styles.Button}
       />
 
       {/* Go to List */}
       <Button
         title="Go to list demo"
-        onPress={() => navigation.navigate('List')}
+        onPress={() => navigation.navigate("List")}
         style={styles.Button}
       />
       {/* Go to ImageScreen  */}
       <Button
         title="Go to Image"
-        onPress={() => navigation.navigate('Image')}
+        onPress={() => navigation.navigate("Image")}
         style={styles.Button}
       />
       {/* Go to CounterScreen */}
       <Button
         title="Go to CounterScreen"
-        onPress={() => navigation.navigate('Counter')}
+        onPress={() => navigation.navigate("Counter")}
         style={styles.Button}
       />
-         {/* Go to ColorScreen */}
-         <Button
+      {/* Go to ColorScreen */}
+      <Button
         title="Go to ColorScreen"
-        onPress={() => navigation.navigate('Color')}
+        onPress={() => navigation.navigate("Color")}
+        style={styles.Button}
+      />
+      {/* Go to SquareScreen */}
+      <Button
+        title="Go to SquareScreen"
+        onPress={() => navigation.navigate("Square")}
         style={styles.Button}
       />
     </View>
@@ -49,10 +54,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "blue",
   },
-  Button:{
-    marginVertical:50,
-    backgroundColor:'yellow'
-  }
+  Button: {
+    marginVertical: 50,
+    backgroundColor: "yellow",
+  },
 });
 
 export default HomeScreen;
