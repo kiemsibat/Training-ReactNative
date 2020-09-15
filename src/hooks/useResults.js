@@ -16,7 +16,7 @@ export default () => {
         }
       });
       setResults(response.data.businesses);
-      console.log('response ==>',response.data.businesses.image_url);
+      // console.log('response ==>',response.data.businesses);
     } catch (err) {
       setErrorMessage('Something went wrong');
     }
