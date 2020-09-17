@@ -12,13 +12,15 @@ import { EvilIcons } from "@expo/vector-icons";
 import { Feather } from '@expo/vector-icons'; 
 const IndexScreen = ({ navigation }) => {
   const { state, addBlogPost, delBlogPost } = useContext(Context);
+  // const random = Math.floor(Math.random() * 99999;
+  console.log(state);
   return (
     <View>
       {/* <Text>Index Screen</Text> */}
-      <Button title="Add Post" onPress={addBlogPost} />
+
       <FlatList
         data={state}
-        keyExtractor={(blogPost) => blogPost.title}
+        keyExtractor={(blogPost) => blogPost.id}
         renderItem={({ item }) => {
           return (
             <TouchableOpacity

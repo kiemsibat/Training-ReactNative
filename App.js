@@ -8,7 +8,7 @@ import CreateScreen from './components/screens/CreateScreen'
 
 const navigator = createStackNavigator(
   {
-    Index: IndexScreen,
+    Index:IndexScreen,
     Show:ShowScreen,
     Create:CreateScreen,
   },
