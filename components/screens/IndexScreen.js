@@ -1,23 +1,49 @@
-import React, { useContext } from "react";
-import { Text, View, StyleSheet, FlatList } from "react-native";
-import BlogContext from "../../components/context/BlogContext";
-const IndexScreen = () => {
-  const users = useContext(BlogContext);
-  console.log(users);
+import React, { useContext } from 'react';
+import { View, Text, StyleSheet, FlatList, Button,TouchableOpacity } from 'react-native';
+import { Context } from '../context/BlogContext';
+import { EvilIcons } from '@expo/vector-icons'; 
+const IndexScreen = ({navigation}) => {
+  
+  const { state, addBlogPost,delBlogPost } = useContext(Context);
   return (
     <View>
-      <Text>Hello world baybe </Text>
+      {/* <Text>Index Screen</Text> */}
+      <Button title="Add Post" onPress={addBlogPost} />
       <FlatList
-        data={users}
-        keyExtractor={(user) => user.title}
+        data={state}
+        keyExtractor={blogPost => blogPost.title}
         renderItem={({ item }) => {
-          return <Text>{item.title}</Text>;
+          return <TouchableOpacity onPress={() => navigation.navigate('Show',{id:item.id})}>
+               <View style={styles.rows}> 
+            <Text style={styles.title}>{item.title} - {item.id}</Text>
+            <TouchableOpacity onPress={() => delBlogPost(item.id)}>
+            <EvilIcons name="trash" size={30} color="black" />
+            </TouchableOpacity>
+            </View>
+          </TouchableOpacity>
+           
+          
         }}
       />
     </View>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  rows:{
+    flexDirection:'row',
+    justifyContent:'space-between',
+    paddingVertical:10,
+    paddingHorizontal:15,
+    borderTopWidth:1,
+    borderBottomWidth:1,
+    borderColor:'white',
+    backgroundColor:'#F2F2F2'
+
+  },
+  title:{
+    fontSize:18,
+  }
+});
 
 export default IndexScreen;
