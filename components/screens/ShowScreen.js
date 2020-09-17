@@ -10,7 +10,7 @@ const ShowScreen = ({navigation}) =>{
         blogPost => blogPost.id === navigation.getParam('id')
     )
     return<View >
-         <Text style={styles.header}>Blog {blogPost.title} </Text>
+         <Text style={styles.header}>{blogPost.title} </Text>
         <Text style={styles.content}>{blogPost.content} </Text>
     </View>
 }
