@@ -1,23 +1,29 @@
-import React, { useContext } from "react";
+import React, { useContext ,useEffect} from "react";
 import {
   View,
   Text,
   StyleSheet,
   FlatList,
-  Button,
   TouchableOpacity,
 } from "react-native";
 import { Context } from "../context/BlogContext";
 import { EvilIcons } from "@expo/vector-icons";
 import { Feather } from '@expo/vector-icons'; 
 const IndexScreen = ({ navigation }) => {
-  const { state, addBlogPost, delBlogPost } = useContext(Context);
-  // const random = Math.floor(Math.random() * 99999;
-  // console.log(state);
+  const { state,delBlogPost ,getBlogPosts} = useContext(Context);
+  useEffect(() => {
+    getBlogPosts();
+    const listener = navigation.addListener('didFocus',() => {
+      getBlogPosts();
+    });
+    return () =>{
+      listener.remove();
+    }
+  }, [])
+
   return (
     <View>
       {/* <Text>Index Screen</Text> */}
-
       <FlatList
         data={state}
         keyExtractor={(blogPost) => blogPost.title}
