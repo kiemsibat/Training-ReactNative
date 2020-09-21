@@ -19,6 +19,7 @@ const SigninScreen = () => {
                    text="No account ? Signup"
                    routeName="Signup"
             />
+    
         </View>
     )
 }
