@@ -3,6 +3,7 @@ import { View, StyleSheet } from "react-native";
 import { Input, Text, Button } from "react-native-elements";
 import Spacer from "../../src/components/Spacer";
 import {Context as AuthContext} from "../context/AuthContext"
+import {AsyncStorage} from 'react-native';
 const SignupScreen = ({ navigation }) => {
     const {state,signup} = useContext(AuthContext);
     const[email,setEmail] = useState('');
