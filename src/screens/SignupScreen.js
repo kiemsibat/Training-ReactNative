@@ -1,44 +1,27 @@
-import React, { useState ,useContext} from "react";
-import { View, StyleSheet } from "react-native";
-import { Input, Text, Button } from "react-native-elements";
+import React, {useContext} from "react";
+import { View, StyleSheet ,TouchableOpacity} from "react-native";
+import {Text } from "react-native-elements";
 import Spacer from "../../src/components/Spacer";
 import {Context as AuthContext} from "../context/AuthContext"
+import AuthForm from '../components/AuthForm'
 import {AsyncStorage} from 'react-native';
 const SignupScreen = ({ navigation }) => {
     const {state,signup} = useContext(AuthContext);
-    const[email,setEmail] = useState('');
-    const[password,setPassword] = useState('');
 
     console.log('state is here',state);
   return (
     <View style={styles.container}>
+      <AuthForm
+        headerText="Sign Up for Tracker"
+        errorMessage={state.errorMessage}      
+        onSubmit={signup}
+        submitButtonText="Sign Up"
+      />
       <Spacer>
-        <Text h3>Signup for tracker</Text>
+        <Text onPress={() => navigation.navigate('Signin')} style={styles.link}>
+          Already have an account ? Sign in instead 
+        </Text>
       </Spacer>
-      <Spacer>
-        <Input
-          label="Email"
-          value={email}
-          onChangeText={(email) => {
-            setEmail(email)
-            // console.log('Email :',email)
-          }}
-          type="Email"
-        />
-      </Spacer>
-      <Spacer>
-        <Input
-          label="Password"
-          secureTextEntry={true}
-          value={password}
-          onChangeText={(password) => {
-              setPassword(password)
-              // console.log('Password :',Password)
-            }}
-        />
-        {state.errorMessage ? <Text style={styles.error}>{state.errorMessage}</Text> : null}
-      </Spacer>
-      <Button title="Sign Up" onPress={() => signup({email,password})} />
     </View>
   );
 };
@@ -56,6 +39,10 @@ const styles = StyleSheet.create({
   error:{
       color:'red',
       fontSize:20
+  },
+  link:{
+    color:'blue',
+
   }
 });
 

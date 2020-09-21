@@ -26,7 +26,7 @@ const signup = dispatch => async ({email,password }) => {
     };
 
 
-const signin = (dispatch) => {
+const signin = ({email,password }) => {
     return({email,password}) => {
         //try to signin
         //handle success by updating state up
