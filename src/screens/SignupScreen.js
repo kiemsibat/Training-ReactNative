@@ -4,7 +4,7 @@ import { Input, Text, Button } from "react-native-elements";
 import Spacer from "../../src/components/Spacer";
 
 const SignupScreen = ({ navigation }) => {
-    const[userName,setUserName] = useState('');
+    const[email,setEmail] = useState('');
     const[password,setPassword] = useState('');
 
   return (
@@ -14,28 +14,26 @@ const SignupScreen = ({ navigation }) => {
       </Spacer>
       <Spacer>
         <Input
-          // placeholder="Username"
-          label="Username"
-          value={userName}
-          onChangeText={(text) => {
-            setUserName(text)
-            console.log(text)
+          label="Email"
+          value={email}
+          onChangeText={(email) => {
+            setEmail(email)
+            console.log('Email :',text)
           }}
+          type="Email"
         />
       </Spacer>
       <Spacer>
         <Input
-          //   placeholder="Password"
           label="Password"
           secureTextEntry={true}
           value={password}
-          onChangeText={(text) => {
-              setPassword(text)
-              console.log(text)
+          onChangeText={(password) => {
+              setPassword(password)
+              console.log('Password :',text)
             }}
         />
       </Spacer>
-
       <Button title="Sign Up" />
     </View>
   );
@@ -48,7 +46,9 @@ const styles = StyleSheet.create({
   container:{
       flex:1,
       justifyContent:'center',
-      marginBottom:10
+      marginBottom:10,
+      backgroundColor:'#A8D1DE'
+
   }
 });
 
