@@ -8,6 +8,7 @@ const SignupScreen = ({ navigation }) => {
     const[email,setEmail] = useState('');
     const[password,setPassword] = useState('');
 
+    console.log('state is here',state);
   return (
     <View style={styles.container}>
       <Spacer>
@@ -34,6 +35,7 @@ const SignupScreen = ({ navigation }) => {
               // console.log('Password :',Password)
             }}
         />
+        {state.errorMessage ? <Text style={styles.error}>{state.errorMessage}</Text> : null}
       </Spacer>
       <Button title="Sign Up" onPress={() => signup({email,password})} />
     </View>
@@ -49,7 +51,10 @@ const styles = StyleSheet.create({
       justifyContent:'center',
       marginBottom:10,
       backgroundColor:'#A8D1DE'
-
+  },
+  error:{
+      color:'red',
+      fontSize:20
   }
 });
 
