@@ -31,10 +31,10 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   container: {
-    flex: 1,
+  
     justifyContent: "center",
-    marginBottom: 10,
-    backgroundColor: "#A8D1DE",
+    marginTop: 100,
+    // backgroundColor: "#A8D1DE",
   },
   error: {
     color: "red",
