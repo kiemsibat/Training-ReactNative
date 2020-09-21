@@ -7,7 +7,9 @@ const authReducer = (state,action) => {
         case 'add_error' :
             return {...state,errorMessage:action.payload}
         case 'signup':
-            return{errorMessage:'',token:action.payload}    
+            return{errorMessage:'',token:action.payload}   
+        case 'signin':  
+            return {errorMessage:'',token:action.payload}   
         default:
             return state;
     }
@@ -26,22 +28,24 @@ const signup = dispatch => async ({email,password }) => {
     };
 
 
-const signin = ({email,password }) => {
-    return({email,password}) => {
-        //try to signin
-        //handle success by updating state up
-        //handle failure  by showing error message (some how)
-    }
-}
+const signin = dispatch => async ({email,password}) => {
 
-const signout = (dispatch) => {
-    return () => {
-        // somehow signout
-    };
+        try{
+            const response = await trackerApi.post('/signin', {email,password});
+            await AsyncStorage.setItem('token',response.data.token);
+            dispatch({type:'signin',payload:response.data.token});
+            navigate('mainFlow');
+        }catch(err) {
+            dispatch({
+            type:'add_error',
+            payload:'Some thing went wrong sigin'
+        })
+        }
 };
+
 
 export const {Provider,Context} = createDataContext(
     authReducer,
-    {signup,signin,signout},
+    {signup,signin},
     {token:null,errorMessage:''}
 )
