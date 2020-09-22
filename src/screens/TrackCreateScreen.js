@@ -1,43 +1,42 @@
-import React,{useEffect, useState} from 'react';
-import {StyleSheet} from 'react-native';
-import {Text} from 'react-native-elements'
-import {SafeAreaView} from 'react-navigation';
-import {requestPermissionsAsync} from 'expo-location'
-import Map from '../components/Map'
+import '../_mockLocation';
+import React, { useContext, useCallback } from 'react';
+import { StyleSheet } from 'react-native';
+import { Text } from 'react-native-elements';
+import { SafeAreaView, withNavigationFocus } from 'react-navigation';
+import Map from '../components/Map';
+import { Context as LocationContext } from '../context/LocationContext';
+import useLocation from '../hooks/useLocation';
+import TrackForm from '../components/TrackForm';
+import { FontAwesome } from '@expo/vector-icons';
 
+const TrackCreateScreen = ({ isFocused }) => {
+  const {
+    state: { recording },
+    addLocation
+  } = useContext(LocationContext);
+  const callback = useCallback(
+    location => {
+      addLocation(location, recording);
+    },
+    [recording]
+  );
+  const [err] = useLocation(isFocused || recording, callback);
 
-const TrackCreateScreen = () => {
+  return (
+    <SafeAreaView forceInset={{ top: 'always' }}>
+      <Text h2>Create a Track</Text>
+      <Map />
+      {err ? <Text>Please enable location services</Text> : null}
+      <TrackForm />
+    </SafeAreaView>
+  );
+};
 
-    const [err,setErr] = useState('');
-    
-   const startWatching = async () => {
-    try {
-        const { granted } = await requestPermissionsAsync();
-        if (!granted) {
-          throw new Error('Location permission not granted');
-        }
-      } catch (e) {
-        setErr(e);
-      }
-   };
+TrackCreateScreen.navigationOptions = {
+  title: 'Add Track',
+  tabBarIcon: <FontAwesome name="plus" size={20} />
+};
 
-   useEffect(() => {
-       startWatching();
-   },[])
+const styles = StyleSheet.create({});
 
-    return(
-           <SafeAreaView forceInset={{top:'always'}}>
-            <Text h3>TrackCreateScreen</Text>
-            <Map/>
-            {err ? <Text>Please enable location services</Text> :null}
-            </SafeAreaView>
-    )
-}
-
-const styles = StyleSheet.create({
-    text:{
-        fontSize:48
-    }
-})
-
-export default TrackCreateScreen
+export default withNavigationFocus(TrackCreateScreen);

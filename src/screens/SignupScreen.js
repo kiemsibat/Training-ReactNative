@@ -1,49 +1,42 @@
-import React, { useContext, useEffect } from "react";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
-import { Context as AuthContext } from "../context/AuthContext";
-import AuthForm from "../components/AuthForm";
-import NavLink from "../components/NavLink";
-import { NavigationEvents } from "react-navigation";
-const SignupScreen = () => {
-  const { state, signup, clearErrorMessage, tryLocalSignin } = useContext(
-    AuthContext
-  );
-  // useEffect(() => {
-  //   tryLocalSignin();
-  // },[])
+import React, { useContext } from 'react';
+import { View, StyleSheet } from 'react-native';
+import { NavigationEvents } from 'react-navigation';
+import { Context as AuthContext } from '../context/AuthContext';
+import AuthForm from '../components/AuthForm';
+import NavLink from '../components/NavLink';
+
+const SignupScreen = ({ navigation }) => {
+  const { state, signup, clearErrorMessage } = useContext(AuthContext);
+
   return (
     <View style={styles.container}>
-      <NavigationEvents onWillBlur={clearErrorMessage} />
+      <NavigationEvents onWillFocus={clearErrorMessage} />
       <AuthForm
         headerText="Sign Up for Tracker"
         errorMessage={state.errorMessage}
-        onSubmit={signup}
         submitButtonText="Sign Up"
+        onSubmit={signup}
       />
-      <NavLink text="Already have an account ? Sign In" routeName="Signin" />
-      {/* {console.log('signup',state.errorMessage)} */}
+      <NavLink
+        routeName="Signin"
+        text="Already have an account? Sign in instead!"
+      />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 30,
-  },
-  container: {
-    justifyContent: "center",
-    marginTop: 100,
-    // backgroundColor: "#A8D1DE",
-  },
-  error: {
-    color: "red",
-    fontSize: 20,
-  },
-});
 
 SignupScreen.navigationOptions = () => {
   return {
     header: () => false,
   };
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    marginBottom: 250,
+  },
+});
+
 export default SignupScreen;
