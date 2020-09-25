@@ -1,27 +1,19 @@
 import React from 'react';
-import {Text,View,StyleSheet} from 'react-native';
-
+import {Text, View, StyleSheet,Button} from 'react-native';
+import Header from './src/components/Header';
+import AlbumsList from './src/components/AlbumsList';
 const App = () => {
-  return(
-    <>
-      <View style={styles.wrapper}> 
-      <Text style={styles.container}>Hello world</Text>
-      </View>
-    </>
-  )
-}
-
-const styles = StyleSheet.create({
-  container:{
-    fontSize:20,
-    fontWeight:'bold',
-    color:'black',
-  },
-  wrapper:{
-    backgroundColor:'#F8F8F8',
-    justifyContent:'center',
-    alignItems: 'center',
-    shadowColor:'#000'
+  const onHandleClick = () => {
+    console.log('hello world');
   }
-})
+
+  return (
+    <>
+    <Header headerText="AlbumsList"/>
+    <AlbumsList/>
+    </>
+  );
+};
+
+const styles = StyleSheet.create({});
 export default App;
