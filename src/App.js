@@ -1,0 +1,15 @@
+import React, {Component} from 'react';
+import {Text, View} from 'react-native';
+import {Header} from './components/common/Header';
+class App extends Component {
+  render() {
+    return (
+      <View>
+        <Header />
+        <Text>An App !</Text>
+      </View>
+    );
+  }
+}
+
+export default App;
