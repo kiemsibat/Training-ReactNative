@@ -1,14 +1,13 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
-class Header extends Component {
-  render() {
-    return (
-      <View style={styles.header}>
-        <Text style={styles.text}>An Header !</Text>
-      </View>
-    );
-  }
-}
+
+const Header = ({headerText}) => {
+  return (
+    <View style={styles.header}>
+      <Text style={styles.text}>hello</Text>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   header: {

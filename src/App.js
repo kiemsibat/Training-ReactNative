@@ -5,7 +5,7 @@ class App extends Component {
   render() {
     return (
       <View>
-        <Header />
+        <Header headerText="Authentication" />
         <Text>An App !</Text>
       </View>
     );
